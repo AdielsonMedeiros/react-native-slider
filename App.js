@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Slider from '@react-native-community/slider';
+import { StyleSheet, Text, View, Switch } from 'react-native';
+
 
 export default function App() {
 
-  const [valor,setValor] = useState(50)
+  const [status,setStatus] = useState(false)
 
 
 
   return (
     <View style={styles.container}>
-      <Slider minimumValue={0} maximumValue={100} value={valor}
-       onValueChange={(valoSelecionado)=> setValor (valoSelecionado)}
-       maximumTrackTintColor='#000FFF' minimumTrackTintColor='#FF0000' thumbTintColor='#121212'/>
-      <Text style={{textAlign: 'center', fontSize: 25}}>Valor: {valor.toFixed(0)} </Text>
+       <Switch value={status} 
+       onValueChange={ (valorSelecionado) => setStatus(valorSelecionado)}
+       //mudar a cor visual
+      trackColor={{ false: '#121212', true: '#00ff00'}}
+      thumbColor={status ? "#121212" : '#f4f4f4'} />
+      <Text style={{textAlign: 'center', fontSize: 25}}>status: {status ? 'ATIVO' : 'INATIVO'}</Text>
     </View>
   );
 }
@@ -22,6 +24,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
     marginTop: 35,
+    backgroundColor:'#ddd'
   },
 });
